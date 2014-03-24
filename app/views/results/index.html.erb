@@ -1,0 +1,29 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+    <th>Fixture</th>
+    <th>Winner</th>
+    <th>Ball in table</th>
+    <th>Match number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%= result.fixture %></td>
+    <td><%= result.winner %></td>
+    <td><%= result.ball_in_table %></td>
+    <td><%= result.match_number %></td>
+    <td><%= link_to 'Show', result %></td>
+    <td><%= link_to 'Edit', edit_result_path(result) %></td>
+    <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Result', new_result_path %>

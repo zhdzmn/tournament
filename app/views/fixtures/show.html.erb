@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Competent1:</b>
+  <%= @fixture.competent1 %>
+</p>
+
+<p>
+  <b>Competent2:</b>
+  <%= @fixture.competent2 %>
+</p>
+
+<p>
+  <b>Matchdate:</b>
+  <%= @fixture.matchDate.to_s(:long) %>
+</p>
+
+<p>
+  <b>Matchtime:</b>
+  <%= @fixture.matchTime.to_s(:time) %>
+</p>
+
+<p>
+  <b>Matchbegin:</b>
+  <%= @fixture.matchBegin %>
+</p>
+
+
+<%= link_to 'Edit', edit_fixture_path(@fixture) %> |
+<%= link_to 'Back', fixtures_path %>

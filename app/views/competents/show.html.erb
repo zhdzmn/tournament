@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @competent.name %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @competent.group %>
+</p>
+
+
+<%= link_to 'Edit', edit_competent_path(@competent) %> |
+<%= link_to 'Back', competents_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@result) do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% @result.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fixture %><br />
+    <%= f.select :fixture_id, Fixture.all.collect {|f| [f.to_s, f.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :winner %><br />
+    <%= f.select :winner_id, Competent.all.collect {|c| [c.name, c.id] } %>
+  </div>
+  <div class="field">
+    <%= f.label :ball_in_table %><br />
+    <%= f.number_field :ball_in_table %>
+  </div>
+  <div class="field">
+    <%= f.label :match_number %><br />
+    <%= f.number_field :match_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

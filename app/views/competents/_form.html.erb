@@ -1,0 +1,25 @@
+<%= form_for(@competent) do |f| %>
+  <% if @competent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@competent.errors.count, "error") %> prohibited this competent from being saved:</h2>
+
+      <ul>
+      <% @competent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :group %><br />
+    <%= f.select :group_id, Group.all.collect {|g| [g.name+' '+g.mode, g.id] }  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

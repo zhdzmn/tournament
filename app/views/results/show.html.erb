@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fixture:</b>
+  <%= @result.fixture %>
+</p>
+
+<p>
+  <b>Winner:</b>
+  <%= @result.winner %>
+</p>
+
+<p>
+  <b>Ball in table:</b>
+  <%= @result.ball_in_table %>
+</p>
+
+<p>
+  <b>Match number:</b>
+  <%= @result.match_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

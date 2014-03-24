@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fixture: 
+  winner: 
+  ball_in_table: 1
+  match_number: 1
+
+two:
+  fixture: 
+  winner: 
+  ball_in_table: 1
+  match_number: 1

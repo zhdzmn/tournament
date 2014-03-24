@@ -1,0 +1,2 @@
+module CompetentsHelper
+end
