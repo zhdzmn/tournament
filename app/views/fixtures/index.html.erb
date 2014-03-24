@@ -21,9 +21,14 @@
     <td><%= fixture.matchDate.to_s(:long) %></td>
     <td><%= fixture.matchTime.to_s(:time) %></td>
     <td><%= fixture.matchBegin %></td>
-    <td><%= fixture.results.group('winner_id').order('count(winner_id) desc').first.try(:winner) if fixture.results.size %></td>
-    <td><%= ( (fixture.results.group('winner_id').count.values.sort.reverse.at(0).to_s || '0') + '-' +  
-            (fixture.results.group('winner_id').count.values.sort.reverse.at(1).to_s || '0') ) if fixture.results.size %></td>
+    <% if !fixture.results.empty? %>
+        <td><%= fixture.results.group('winner_id').order('count(id) desc').first.try(:winner) %></td>
+        <td><%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s || '0' %>
+             -
+            <%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(1).to_s || '0' %></td>
+    <% else %>  
+        <td></td><td></td>
+    <% end %>
     <td><%= link_to 'Show', fixture %></td>
     <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
     <td><%= link_to 'Destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
