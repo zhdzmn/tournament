@@ -1,13 +1,19 @@
 Tournament::Application.routes.draw do
   devise_for :users
+  
+  resources :referees
 
-  resources :results
-
-  resources :fixtures
+  resources :fixtures do
+    resources :results
+  end
 
   resources :competents 
 
-  resources :groups
+  resources :groups do
+    collection do
+      get 'standings'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

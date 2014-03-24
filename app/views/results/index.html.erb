@@ -17,13 +17,13 @@
     <td><%= result.winner %></td>
     <td><%= result.ball_in_table %></td>
     <td><%= result.match_number %></td>
-    <td><%= link_to 'Show', result %></td>
-    <td><%= link_to 'Edit', edit_result_path(result) %></td>
-    <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', fixture_result_path(@fixture, result) %></td>
+    <td><%= link_to 'Edit', edit_fixture_result_path(@fixture, result) %></td>
+    <td><%= link_to 'Destroy', fixture_result_path(@fixture, result), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Result', new_result_path %>
+<%= link_to 'New Result', new_fixture_result_path(@fixture) %>

@@ -12,6 +12,15 @@ class GroupsController < ApplicationController
     end
   end
 
+  def standings
+    @groups = Group.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @groups }
+    end
+  end
+
   # GET /groups/1
   # GET /groups/1.json
   def show

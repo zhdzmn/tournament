@@ -1,6 +1,6 @@
-<h1>Listing fixtures</h1>
+<h1>Fixtures</h1>
 
-<table style="width: 100%">
+<table>
   <tr>
     <th>Competent1</th>
     <th>Competent2</th>
@@ -9,6 +9,7 @@
     <th>Match begin</th>
     <th>Set Winner</th>
     <th>Set diff</th>
+    <th>Referee</th>    
   </tr>
 
 <% @fixtures.each do |fixture| %>
@@ -26,6 +27,7 @@
     <% else %>  
         <td></td><td></td>
     <% end %>
+    <td><%= fixture.referee %></td>
   </tr>
 <% end %>
 </table>

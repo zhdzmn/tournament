@@ -20,6 +20,10 @@
     <%= f.select :competent2_id, Competent.all.collect {|c| [c.name, c.id] } %>
   </div>
   <div class="field">
+    <%= f.label :referee %><br />
+    <%= f.select :referee_id, Referee.all.collect {|r| [r.name, r.id] } %>
+  </div>
+  <div class="field">
     <%= f.label :matchDate %><br />
     <%= f.date_select :matchDate %>
   </div>
