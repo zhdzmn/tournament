@@ -1,15 +1,13 @@
 Tournament::Application.routes.draw do
-  resources :results
+  devise_for :users
 
+  resources :results
 
   resources :fixtures
 
-
-  resources :competents
-
+  resources :competents 
 
   resources :groups
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,7 +58,7 @@ Tournament::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'groups#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

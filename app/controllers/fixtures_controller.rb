@@ -1,4 +1,6 @@
 class FixturesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /fixtures
   # GET /fixtures.json
   def index

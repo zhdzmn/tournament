@@ -1,4 +1,5 @@
 class CompetentsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /competents
   # GET /competents.json
   def index
