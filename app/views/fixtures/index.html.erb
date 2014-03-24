@@ -22,7 +22,7 @@
     <td><%= fixture.matchTime.to_s(:time) %></td>
     <td><%= fixture.matchBegin %></td>
     <% if !fixture.results.empty? %>
-        <td><%= fixture.results.group('winner_id').order('count(id) desc').first.try(:winner) %></td>
+        <td><%= Competent.find(fixture.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first.keys.first).name %></td>
         <td><%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s || '0' %>
              -
             <%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(1).to_s || '0' %></td>
