@@ -28,7 +28,7 @@ class ResultsController < ApplicationController
   # GET /results/new.json
   def new
     @result = @fixture.results.new
-
+    @result.match_number = @fixture.results.count + 1
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @result }
@@ -44,7 +44,7 @@ class ResultsController < ApplicationController
   # POST /results.json
   def create
     @result = @fixture.results.new(params[:result])
-
+    
     respond_to do |format|
       if @result.save
         format.html { redirect_to fixture_result_url(@fixture, @result), notice: 'Result was successfully created.' }
