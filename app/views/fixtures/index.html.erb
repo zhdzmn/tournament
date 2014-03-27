@@ -10,9 +10,11 @@
     <th>Set Winner</th>
     <th>Set diff</th>
     <th>Referee</th>
+    <% if user_signed_in? %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% @fixtures.each do |fixture| %>
@@ -33,13 +35,18 @@
         <td></td><td></td>
     <% end %>
     <td><%= fixture.referee %></td>
+    <% if user_signed_in? %>
     <td><%= link_to 'Results', fixture_results_path(fixture) %></td>
     <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
     <td><%= link_to 'Destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+
   </tr>
 <% end %>
 </table>
 
 <br />
+<% if user_signed_in? %>
+    <%= link_to 'New Fixture', new_fixture_path %>
+<% end %>
 
-<%= link_to 'New Fixture', new_fixture_path %>
