@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324132423) do
+ActiveRecord::Schema.define(:version => 20140327141433) do
 
   create_table "competents", :force => true do |t|
     t.string   "name"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(:version => 20140324132423) do
   create_table "fixtures", :force => true do |t|
     t.integer  "competent1_id"
     t.integer  "competent2_id"
-    t.date     "matchDate"
-    t.time     "matchTime"
+    t.date     "match_date"
+    t.time     "match_time"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.boolean  "matchBegin"
+    t.boolean  "match_begin"
     t.integer  "referee_id"
   end
 

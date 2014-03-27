@@ -24,16 +24,16 @@
     <%= f.select :referee_id, Referee.all.collect {|r| [r.name, r.id] } %>
   </div>
   <div class="field">
-    <%= f.label :matchDate %><br />
-    <%= f.date_select :matchDate %>
+    <%= f.label :match_date %><br />
+    <%= f.date_select :match_date %>
   </div>
   <div class="field">
-    <%= f.label :matchTime %><br />
-    <%= f.time_select :matchTime %>
+    <%= f.label :match_time %><br />
+    <%= f.time_select :match_time %>
   </div>
   <div class="field">
-    <%= f.label :matchBegin %><br />
-    <%= f.check_box :matchBegin %>
+    <%= f.label :match_begin %><br />
+    <%= f.check_box :match_begin %>
   </div>
   <div class="actions">
     <%= f.submit %>

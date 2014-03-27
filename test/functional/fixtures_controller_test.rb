@@ -18,7 +18,7 @@ class FixturesControllerTest < ActionController::TestCase
 
   test "should create fixture" do
     assert_difference('Fixture.count') do
-      post :create, fixture: { matchDate: @fixture.matchDate, matchTime: @fixture.matchTime }
+      post :create, fixture: { match_date: @fixture.match_date, matchTime: @fixture.matchTime }
     end
 
     assert_redirected_to fixture_path(assigns(:fixture))
@@ -35,7 +35,7 @@ class FixturesControllerTest < ActionController::TestCase
   end
 
   test "should update fixture" do
-    put :update, id: @fixture, fixture: { matchDate: @fixture.matchDate, matchTime: @fixture.matchTime }
+    put :update, id: @fixture, fixture: { match_date: @fixture.match_date, matchTime: @fixture.matchTime }
     assert_redirected_to fixture_path(assigns(:fixture))
   end
 
