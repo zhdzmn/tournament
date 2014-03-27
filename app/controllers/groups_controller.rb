@@ -13,19 +13,14 @@ class GroupsController < ApplicationController
   end
 
   def standings
-    @singles_groups = {}
-    Group.where(mode: 'Singles').each do |g|
-      @singles_groups[g.name] = g.competents.collect do |c|
-        {name: c.name, win_count: c.results.count, ball_advantage: c.results.sum(:ball_in_table)}
+    @groups = {'Singles' => {}, 'Doubles' => {}}
+    @groups.each do |mode, groups|
+      Group.where(mode: mode).each do |g|
+        groups[g.name] = g.competents.collect do |c|
+          {name: c.name, win_count: c.results.count, ball_advantage: c.results.sum(:ball_in_table)}
+        end
+        groups[g.name].sort_by! {|a| a[:win_count]}.reverse!
       end
-      @singles_groups[g.name].sort_by! {|a| a[:win_count]}.reverse!
-    end
-    @doubles_groups = {}
-    Group.where(mode: 'Doubles').each do |g|
-      @doubles_groups[g.name] = g.competents.collect do |c|
-        {name: c.name, win_count: c.results.count, ball_advantage: c.results.sum(:ball_in_table)}
-      end
-      @doubles_groups[g.name].sort_by! {|a| a[:win_count]}.reverse!
     end
 
     respond_to do |format|
