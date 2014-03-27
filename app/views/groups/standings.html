@@ -1,25 +1,43 @@
-<h1>Listing groups</h1>
+<h1>Singles</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Mode</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% @singles_groups.each do |group, competents| %>
+  <%= content_tag :h2, group %>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= group.name %></td>
-    <td><%= group.mode %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Win count</th>
+      <th>Ball advantage</th>
+    </tr>
+  <% competents.each do |competent| %>
+    <tr>
+      <td><%= competent[:name] %></td>
+      <td><%= competent[:win_count] %></td>
+      <td><%= competent[:ball_advantage] %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
+<%- end %>
 
-<%= link_to 'New Group', new_group_path %>
+<h1>Doubles</h1>
+
+<% @doubles_groups.each do |group, competents| %>
+  <%= content_tag :h2, group %>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Win count</th>
+      <th>Ball advantage</th>
+    </tr>
+  <% competents.each do |competent| %>
+    <tr>
+      <td><%= competent[:name] %></td>
+      <td><%= competent[:win_count] %></td>
+      <td><%= competent[:ball_advantage] %></td>
+    </tr>
+  <% end %>
+  </table>
+
+<%- end %>

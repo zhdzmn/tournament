@@ -24,9 +24,11 @@
     <td><%= fixture.matchBegin %></td>
     <% if !fixture.results.empty? %>
         <td><%= Competent.find(fixture.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first.keys.first).name %></td>
-        <td><%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s || '0' %>
+        <td><% x = fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s %>
+            <%= x.strip.empty? ? '0' : x %>
              -
-            <%= fixture.results.group('winner_id').count('id').values.sort.reverse.at(1).to_s || '0' %></td>
+            <% y = fixture.results.group('winner_id').count('id').values.sort.reverse.at(1).to_s %>
+            <%= y.strip.empty? ? '0' : y %></td>
     <% else %>  
         <td></td><td></td>
     <% end %>
