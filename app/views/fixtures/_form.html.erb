@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :competent1 %><br />
-    <%= f.select :competent1_id, Competent.all.collect {|c| [c.name, c.id] } %>
+    <%= f.grouped_collection_select(:competent1_id, @groups, :competents, :to_opt_group, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :competent2 %><br />
-    <%= f.select :competent2_id, Competent.all.collect {|c| [c.name, c.id] } %>
+    <%= f.grouped_collection_select(:competent2_id, @groups, :competents, :to_opt_group, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :referee %><br />

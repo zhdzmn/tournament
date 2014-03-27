@@ -28,6 +28,8 @@ class FixturesController < ApplicationController
   def new
     @fixture = Fixture.new
 
+    @groups = Group.order('mode DESC, name ASC')
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @fixture }
@@ -37,12 +39,14 @@ class FixturesController < ApplicationController
   # GET /fixtures/1/edit
   def edit
     @fixture = Fixture.find(params[:id])
+    @groups = Group.order('mode DESC, name ASC')
   end
 
   # POST /fixtures
   # POST /fixtures.json
   def create
     @fixture = Fixture.new(params[:fixture])
+    @groups = Group.order('mode DESC, name ASC')
 
     respond_to do |format|
       if @fixture.save
@@ -59,6 +63,7 @@ class FixturesController < ApplicationController
   # PUT /fixtures/1.json
   def update
     @fixture = Fixture.find(params[:id])
+    @groups = Group.order('mode DESC, name ASC')
 
     respond_to do |format|
       if @fixture.update_attributes(params[:fixture])
