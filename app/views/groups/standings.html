@@ -12,8 +12,8 @@
   <% competents.each do |competent| %>
     <tr>
       <td><%= competent[:name] %></td>
-      <td><%= competent[:win_count] %></td>
-      <td><%= competent[:ball_advantage] %></td>
+      <td><%= competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count] %></td>
+      <td><%= competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage] %></td>
     </tr>
   <% end %>
   </table>
@@ -34,8 +34,8 @@
   <% competents.each do |competent| %>
     <tr>
       <td><%= competent[:name] %></td>
-      <td><%= competent[:win_count] %></td>
-      <td><%= competent[:ball_advantage] %></td>
+      <td><%= competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count] %></td>
+      <td><%= competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage] %></td>
     </tr>
   <% end %>
   </table>
