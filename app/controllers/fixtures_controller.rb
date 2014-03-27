@@ -4,7 +4,7 @@ class FixturesController < ApplicationController
   # GET /fixtures
   # GET /fixtures.json
   def index
-    @fixtures = Fixture.all
+    @fixtures = Fixture.order('match_date ASC, match_time ASC')
 
     respond_to do |format|
       format.html # index.html.erb
