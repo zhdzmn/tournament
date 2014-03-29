@@ -1,0 +1,105 @@
+$bodyFontColor: #828282
+$redColor: #ff3333
+$whiteColor: #ffffff
+$borderColor: #777777
+$hoverColor: #555555
+
+.navbar-form input, .form-inline input
+  width: auto
+
+header
+  min-height: 230px
+  margin-bottom: 5px
+
+@media (min-width: 979px)
+  #sidebar
+    &.affix-top
+      position: static
+    &.affix
+      position: fixed
+      top: 0
+      width: 21.2%
+
+.affix, .affix-top
+  position: static
+
+
+body
+  color: $bodyFontColor
+  background-color: #eee
+
+a
+  color: $redColor
+  text-decoration: none
+  &:hover
+    color: $redColor
+    text-decoration: none
+
+.highlight-bk
+  background-color: $redColor
+  padding: 1px
+  width: 100%
+
+.highlight
+  color: $redColor
+
+h3.highlight
+  padding-top: 13px
+  padding-bottom: 14px
+  border-bottom: 2px solid $redColor
+
+.navbar
+  background-color: $redColor
+  color: $whiteColor
+  border: 0
+  border-radius: 0
+
+.navbar-nav >
+  li
+    > a
+      color: #fff
+      padding-left: 20px
+      padding-right: 20px
+      border-left: 1px solid #e8e8e8
+    &:last-child > a
+      border-right: 1px solid #e8e8e8
+  .active > a
+    color: $whiteColor
+    background-color: transparent
+    &:hover, &:focus
+      color: $whiteColor
+      background-color: transparent
+  .open > a
+    color: $hoverColor
+    background-color: transparent
+    opacity: .9
+    &:hover, &:focus
+      color: $hoverColor
+      background-color: transparent
+      opacity: .9
+
+.nav .open > a
+  border-color: $borderColor
+  border-width: 0
+
+.accordion-group
+  border-width: 0
+
+.dropdown-menu
+  min-width: 250px
+
+.accordion-heading .accordion-toggle, .accordion-inner, .nav-stacked li > a
+  padding-left: 1px
+
+.caret
+  color: #fff
+
+.navbar-toggle
+  color: #fff
+  border-width: 0
+  &:hover
+    background-color: #fff
+
+.panel
+  padding-left: 27px
+  padding-right: 27px

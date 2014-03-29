@@ -1,4 +1,4 @@
-<%= form_for(@fixture) do |f| %>
+<%= form_for(@fixture, html: {class: 'form-horizontal'}) do |f| %>
   <% if @fixture.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fixture.errors.count, "error") %> prohibited this fixture from being saved:</h2>
@@ -11,31 +11,48 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :competent1 %><br />
-    <%= f.grouped_collection_select(:competent1_id, @groups, :competents, :to_opt_group, :id, :name) %>
+  <div class="form-group">
+    <%= f.label :competent1, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.grouped_collection_select(:competent1_id, @groups, :competents, :to_opt_group, :id, :name) %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :competent2 %><br />
-    <%= f.grouped_collection_select(:competent2_id, @groups, :competents, :to_opt_group, :id, :name) %>
+  <div class="form-group">
+    <%= f.label :competent2, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.grouped_collection_select(:competent2_id, @groups, :competents, :to_opt_group, :id, :name) %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :referee %><br />
-    <%= f.select :referee_id, Referee.all.collect {|r| [r.name, r.id] } %>
+  <div class="form-group">
+    <%= f.label :referee, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.select :referee_id, Referee.all.collect {|r| [r.name, r.id] } %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :match_date %><br />
-    <%= f.date_select :match_date %>
+  <div class="form-group">
+    <%= f.label :match_date, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.date_select :match_date %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :match_time %><br />
-    <%= f.time_select :match_time %>
+  <div class="form-group">
+    <%= f.label :match_time, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.time_select :match_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :match_begin %><br />
-    <%= f.check_box :match_begin %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <%= f.label :match_begin do %>
+          <%= f.check_box :match_begin %> Match began?
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

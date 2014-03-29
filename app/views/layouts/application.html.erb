@@ -7,9 +7,47 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">NewsCred</a>  
+  </div><!-- /.container -->
+</div><!-- /.navbar -->
+  
+<!-- HEADER 
+=================================-->
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-12 col-sm-12">
+        <h1>NewsCred Pool Tournament 2014</h1>
+        <p>The ultimate Pool Championship</p>
+      </div>
+    </div>
+  </div> 
+</div>
+<!-- /header container-->
+
+<!-- CONTENT
+=================================-->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+    </div>
+    <div class="col-lg-12">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<hr>
 
 </body>
 </html>

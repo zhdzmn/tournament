@@ -1,20 +1,22 @@
 <% @groups.each do |mode, groups| %>
   <%= content_tag :h2, mode %>
   <% groups.each do |group, competents| %>
-    <%= content_tag :h3, group %>
-    <%= content_tag :table, class: 'table table-striped' do %>
-      <%= content_tag :tr do %>
-          <%= content_tag :th, 'Name' %>
-          <%= content_tag :th, 'Win count' %>
-          <%= content_tag :th, 'Ball advantage' %>
-      <% end %>
-      <% competents.each do |competent| %>
+    <%= content_tag :div, class: 'well' do %>
+      <%= content_tag :h3, group %>
+      <%= content_tag :table, class: 'table table-striped' do %>
         <%= content_tag :tr do %>
-          <%= content_tag :td, competent[:name] %>
-          <%= content_tag :td, competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count] %>
-          <%= content_tag :td, competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage] %>
+            <%= content_tag :th, 'Name' %>
+            <%= content_tag :th, 'Win count' %>
+            <%= content_tag :th, 'Ball advantage' %>
+        <% end %>
+        <% competents.each do |competent| %>
+          <%= content_tag :tr do %>
+            <%= content_tag :td, competent[:name] %>
+            <%= content_tag :td, competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count] %>
+            <%= content_tag :td, competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage] %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    <% end %> 
   <%- end %>
 <%- end %>  
