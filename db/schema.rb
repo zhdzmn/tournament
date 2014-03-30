@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327141433) do
+ActiveRecord::Schema.define(:version => 20140330044739) do
 
   create_table "competents", :force => true do |t|
     t.string   "name"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(:version => 20140327141433) do
     t.integer  "competent2_id"
     t.date     "match_date"
     t.time     "match_time"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.boolean  "match_begin"
     t.integer  "referee_id"
+    t.string   "stage",         :default => "Group", :null => false
   end
 
   add_index "fixtures", ["competent1_id"], :name => "index_fixtures_on_competent1_id"

@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :stage, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.select :stage, %W(Group KnockOut) %>
+    </div>
+  </div>
+  <div class="form-group">
     <%= f.label :competent1, class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
       <%= f.grouped_collection_select(:competent1_id, @groups, :competents, :to_opt_group, :id, :name) %>
@@ -38,7 +44,7 @@
   <div class="form-group">
     <%= f.label :match_time, class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
-      <%= f.time_select :match_time %>
+      <%= f.time_select :match_time, {ampm: true, minute_step: 5, start_hour: 12, end_hour: 20} %>
     </div>
   </div>
   <div class="form-group">
