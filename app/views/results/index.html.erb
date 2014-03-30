@@ -6,9 +6,11 @@
     <th>Winner</th>
     <th>Ball in table</th>
     <th>Match number</th>
+    <% if user_signed_in? %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% @results.each do |result| %>
@@ -17,11 +19,14 @@
     <td><%= result.winner %></td>
     <td><%= result.ball_in_table %></td>
     <td><%= result.match_number %></td>
+    <% if user_signed_in? %>
     <td><%= link_to 'Show', fixture_result_path(@fixture, result) %></td>
     <td><%= link_to 'Edit', edit_fixture_result_path(@fixture, result) %></td>
     <td><%= link_to 'Destroy', fixture_result_path(@fixture, result), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
-
-<%= link_to 'New Result', new_fixture_result_path(@fixture) %>
+<% if user_signed_in? %>
+  <%= link_to 'New Result', new_fixture_result_path(@fixture) %>
+<% end %>

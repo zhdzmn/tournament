@@ -11,8 +11,8 @@
     <th>Set diff</th>
     <th>Referee</th>
     <th>Stage</th>
-    <% if user_signed_in? %>
     <th></th>
+    <% if user_signed_in? %>
     <th></th>
     <th></th>
     <% end %>
@@ -37,8 +37,8 @@
     <% end %>
     <td><%= fixture.referee %></td>
     <td><%= fixture.stage %></td>
-    <% if user_signed_in? %>
     <td><%= link_to 'Results', fixture_results_path(fixture) %></td>
+    <% if user_signed_in? %>
     <td><%= link_to 'Edit', edit_fixture_path(fixture) %></td>
     <td><%= link_to 'Destroy', fixture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>

@@ -2,6 +2,7 @@ $bodyFontColor: #828282
 $redColor: #ff3333
 $whiteColor: #ffffff
 $borderColor: #777777
+$navBarBorderColor: #444444
 $hoverColor: #555555
 
 .navbar-form input, .form-inline input
@@ -60,9 +61,9 @@ h3.highlight
       color: #fff
       padding-left: 20px
       padding-right: 20px
-      border-left: 1px solid #e8e8e8
+      border-left: 1px solid $navBarBorderColor
     &:last-child > a
-      border-right: 1px solid #e8e8e8
+      border-right: 1px solid $navBarBorderColor
   .active > a
     color: $whiteColor
     background-color: transparent
@@ -92,13 +93,13 @@ h3.highlight
   padding-left: 1px
 
 .caret
-  color: #fff
+  color: $whiteColor
 
 .navbar-toggle
-  color: #fff
+  color: $whiteColor
   border-width: 0
   &:hover
-    background-color: #fff
+    background-color: $whiteColor
 
 .panel
   padding-left: 27px
