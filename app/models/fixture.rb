@@ -23,8 +23,8 @@ class Fixture < ActiveRecord::Base
   def competents_and_stage_should_be_unique
     fixture1 = Fixture.where(competent1_id: competent1.id, competent2_id: competent2.id, stage: stage).first
     fixture2 = Fixture.where(competent2_id: competent1.id, competent1_id: competent2.id, stage: stage).first
-    fixture1 = nil if self.id == fixture1.id
-    fixture2 = nil if self.id == fixture2.id
+    fixture1 = nil if self.try(:id) == fixture1.try(:id)
+    fixture2 = nil if self.try(:id) == fixture2.try(:id)
     if fixture1.present? || fixture2.present?
       errors.add(:stage, "#{stage}, competents already played against each other")
     end
