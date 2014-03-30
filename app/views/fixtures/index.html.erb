@@ -26,7 +26,7 @@
     <td><%= fixture.match_time.to_s(:time) %></td>
     <td><%= fixture.match_begin %></td>
     <% if !fixture.results.empty? %>
-        <td><%= Competent.find(fixture.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first.keys.first).name %></td>
+        <td><%= fixture.winner.try(:name) %></td>
         <td><% x = fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s %>
             <%= x.strip.empty? ? '0' : x %>
              -

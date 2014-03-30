@@ -10,6 +10,14 @@ class Fixture < ActiveRecord::Base
   def to_s
     self.competent1.to_s + ' vs ' + self.competent2.to_s
   end
+
+  def winner
+    Competent.find(self.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first.keys.first)
+  end
+
+  def loser
+    Competent.find(self.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.first.keys.first)
+  end
   
   private 
   def competents_and_stage_should_be_unique

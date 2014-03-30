@@ -17,9 +17,30 @@ class GroupsController < ApplicationController
     @groups.each do |mode, groups|
       Group.where(mode: mode).each do |g|
         groups[g.name] = g.competents.collect do |c|
-          {name: c.name, win_count: c.results.count, ball_advantage: c.results.sum(:ball_in_table)}
+          {id: c.id, name: c.name, win_count: c.results.count, ball_advantage: c.results.sum(:ball_in_table)}
         end
-        groups[g.name].sort_by! {|a| a[:win_count]}.reverse!
+        groups[g.name].sort! do |a, b|
+          case
+          when a[:win_count] < b[:win_count]
+            1
+          when a[:win_count] > b[:win_count]
+            -1
+          when a[:win_count] == b[:win_count]
+            fixture = Competent.find(a[:id]).head_to_head(Competent.find(b[:id]))
+            if fixture.nil?
+              b[:ball_advantage] <=> a[:ball_advantage]
+            else
+              case
+              when fixture.winner.id == a[:id]
+                -1
+              when fixture.winner.id == b[:id]
+                1
+              else
+                b[:ball_advantage] <=> a[:ball_advantage]
+              end
+            end
+          end
+        end
       end
     end
 

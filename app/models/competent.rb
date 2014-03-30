@@ -8,4 +8,9 @@ class Competent < ActiveRecord::Base
     self.name
   end
 
+  def head_to_head(competent)
+    fixture = Fixture.where('((competent1_id = (?) AND competent2_id = (?)) OR (competent2_id = (?) AND competent1_id = (?))) AND stage = "Group"', self.id, competent.id, self.id, competent.id)
+    fixture.first
+  end
+
 end
