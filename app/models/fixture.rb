@@ -12,11 +12,21 @@ class Fixture < ActiveRecord::Base
   end
 
   def winner
-    Competent.find(self.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first.keys.first)
+    id_win_array = self.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.reverse.first
+    if id_win_array.present?
+      Competent.find(id_win_array.keys.first)
+    else
+      nil
+    end
   end
 
   def loser
-    Competent.find(self.results.group_by(&:winner_id).map {|k, v| {k => v.length}}.sort_by {|s| s.values.first}.first.keys.first)
+    winner_competent = self.winner
+    if self.competent1.id == winner_competent.try(:id)
+      self.competent2
+    elsif self.competent2.id == winner_competent.try(:id)
+      self.competent1
+    end
   end
   
   private 

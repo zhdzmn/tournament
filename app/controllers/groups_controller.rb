@@ -31,9 +31,9 @@ class GroupsController < ApplicationController
               b[:ball_advantage] <=> a[:ball_advantage]
             else
               case
-              when fixture.winner.id == a[:id]
+              when fixture.winner.try(:id) == a[:id]
                 -1
-              when fixture.winner.id == b[:id]
+              when fixture.winner.try(:id) == b[:id]
                 1
               else
                 b[:ball_advantage] <=> a[:ball_advantage]
