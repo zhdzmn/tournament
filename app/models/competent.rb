@@ -1,6 +1,7 @@
 class Competent < ActiveRecord::Base
   belongs_to :group
-  has_many :fixtures
+  has_many :home_fixtures, foreign_key: :competent1_id, class_name: 'Fixture'
+  has_many :away_fixtures, foreign_key: :competent2_id, class_name: 'Fixture'
   has_many :results, foreign_key: :winner_id
   attr_accessible :group_id, :name
 

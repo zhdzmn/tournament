@@ -5,6 +5,7 @@ class FixturesController < ApplicationController
   # GET /fixtures.json
   def index
     @fixtures = Fixture.order('match_date ASC, match_time ASC')
+    @fixtures = @fixtures.group_by(&:mode)
 
     respond_to do |format|
       format.html # index.html.erb
