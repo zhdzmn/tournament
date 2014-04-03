@@ -3,9 +3,15 @@ class Fixture < ActiveRecord::Base
   belongs_to :competent1, class_name: 'Competent'
   belongs_to :competent2, class_name: 'Competent'
   has_many :results, dependent: :destroy
-  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage
+  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage, :mode
 
   validate :competents_and_stage_should_be_unique
+  validate :competents_should_be_on_same_group_if_group_stage
+  validate :competents_should_be_on_same_mode
+  
+  validates :competent1_id, :competent2_id, presence: true
+
+  before_save :populate_mode
 
   def to_s
     self.competent1.to_s + ' vs ' + self.competent2.to_s
@@ -29,7 +35,7 @@ class Fixture < ActiveRecord::Base
     end
   end
   
-  private 
+  private
   def competents_and_stage_should_be_unique
     fixture1 = Fixture.where(competent1_id: competent1.id, competent2_id: competent2.id, stage: stage).first
     fixture2 = Fixture.where(competent2_id: competent1.id, competent1_id: competent2.id, stage: stage).first
@@ -38,6 +44,21 @@ class Fixture < ActiveRecord::Base
     if fixture1.present? || fixture2.present?
       errors.add(:stage, "#{stage}, competents already played against each other")
     end
+  end
+  def competents_should_be_on_same_group_if_group_stage
+    if stage == 'Group'
+      if competent1.group_id != competent2.group_id
+        errors.add(:stage, "#{stage}, competents should be in the same group")
+      end
+    end
+  end
+  def competents_should_be_on_same_group_if_group_stage
+    if competent1.group.mode != competent2.group.mode
+      errors.add(:competent1, "competents should be in the same mode")
+    end
+  end
+  def populate_mode
+    self.mode = competent1.group.mode
   end
 
 end

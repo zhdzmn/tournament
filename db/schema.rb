@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140330044739) do
+ActiveRecord::Schema.define(:version => 20140402024136) do
 
   create_table "competents", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20140330044739) do
     t.boolean  "match_begin"
     t.integer  "referee_id"
     t.string   "stage",         :default => "Group", :null => false
+    t.string   "mode"
   end
 
   add_index "fixtures", ["competent1_id"], :name => "index_fixtures_on_competent1_id"
