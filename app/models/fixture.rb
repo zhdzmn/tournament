@@ -52,7 +52,7 @@ class Fixture < ActiveRecord::Base
       end
     end
   end
-  def competents_should_be_on_same_group_if_group_stage
+  def competents_should_be_on_same_mode
     if competent1.group.mode != competent2.group.mode
       errors.add(:competent1, "competents should be in the same mode")
     end
