@@ -5,17 +5,17 @@
       <%= content_tag :h3, group %>
       <%= content_tag :table, class: 'table table-striped' do %>
         <%= content_tag :tr do %>
-            <%= content_tag :th, 'Name' %>
-            <%= content_tag :th, 'Match played' %>
-            <%= content_tag :th, 'Points' %>
-            <%= content_tag :th, 'Ball advantage' %>
+            <%= content_tag :th, 'Name', style: 'width:55%' %>
+            <%= content_tag :th, 'Match played', style: 'width:15%;text-align:right' %>
+            <%= content_tag :th, 'Points', style: 'width:15%;text-align:right' %>
+            <%= content_tag :th, 'Ball advantage', style: 'width:15%;text-align:right' %>
         <% end %>
         <% competents.each do |competent| %>
           <%= content_tag :tr do %>
             <%= content_tag :td, competent[:name] %>
-            <%= content_tag :td, competent[:match_played] %>
-            <%= content_tag :td, competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count] %>
-            <%= content_tag :td, competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage] %>
+            <%= content_tag :td, competent[:match_played], style: 'text-align:right' %>
+            <%= content_tag :td, competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count], style: 'text-align:right' %>
+            <%= content_tag :td, competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage], style: 'text-align:right' %>
           <% end %>
         <% end %>
       <% end %>
