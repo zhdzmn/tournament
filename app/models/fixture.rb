@@ -12,6 +12,7 @@ class Fixture < ActiveRecord::Base
   validates :competent1_id, :competent2_id, presence: true
 
   before_save :populate_mode
+  before_save :populate_match_began
 
   def to_s
     self.competent1.to_s + ' vs ' + self.competent2.to_s
@@ -59,6 +60,16 @@ class Fixture < ActiveRecord::Base
   end
   def populate_mode
     self.mode = competent1.group.mode
+  end
+  def populate_match_began
+    if self.new_record?
+      self.match_begin = False
+    else 
+      if self.results.size == 0
+        self.match_begin = false
+      end
+      self.match_begin = true
+    end
   end
 
 end

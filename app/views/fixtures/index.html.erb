@@ -7,7 +7,6 @@
         <th>Competent2</th>
         <th>Match date</th>
         <th>Match time</th>
-        <th>Match begin</th>
         <th>Set Winner</th>
         <th>Set diff</th>
         <th>Referee</th>
@@ -25,7 +24,6 @@
         <td><%= fixture.competent2 %></td>
         <td><%= fixture.match_date.to_s(:long) %></td>
         <td><%= fixture.match_time.to_s(:time) %></td>
-        <td><%= fixture.match_begin %></td>
         <% if !fixture.results.empty? %>
             <td><%= fixture.winner.try(:name) %></td>
             <td><% x = fixture.results.group('winner_id').count('id').values.sort.reverse.at(0).to_s %>

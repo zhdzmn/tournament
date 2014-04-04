@@ -14,7 +14,7 @@
           <%= content_tag :tr do %>
             <%= content_tag :td, competent[:name] %>
             <%= content_tag :td, competent[:match_played], style: 'text-align:right' %>
-            <%= content_tag :td, competent[:win_count].to_s.strip.empty? ? '0' : competent[:win_count], style: 'text-align:right' %>
+            <%= content_tag :td, competent[:point].to_s.strip.empty? ? '0' : competent[:point], style: 'text-align:right' %>
             <%= content_tag :td, competent[:ball_advantage].to_s.strip.empty? ? '0' : competent[:ball_advantage], style: 'text-align:right' %>
           <% end %>
         <% end %>
