@@ -3,7 +3,7 @@ class CompetentsController < ApplicationController
   # GET /competents
   # GET /competents.json
   def index
-    @competents = Competent.all
+    @competents = Competent.includes(:group).order('groups.mode, groups.name, competents.name')
 
     respond_to do |format|
       format.html # index.html.erb

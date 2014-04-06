@@ -5,9 +5,11 @@
     <th>Name</th>
     <th>Group</th>
     <th>Mode</th>
+    <% if user_signed_in? %>
     <th></th>
     <th></th>
     <th></th>
+    <% end %>
   </tr>
 
 <% @competents.each do |competent| %>
@@ -15,9 +17,11 @@
     <td><%= competent.name %></td>
     <td><%= competent.group %></td>
     <td><%= competent.group.mode %></td>
+    <% if user_signed_in? %>
     <td><%= link_to 'Show', competent %></td>
     <td><%= link_to 'Edit', edit_competent_path(competent) %></td>
     <td><%= link_to 'Destroy', competent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
