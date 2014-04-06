@@ -9,7 +9,6 @@
     <% if user_signed_in? %>
     <th></th>
     <th></th>
-    <th></th>
     <% end %>
   </tr>
 
@@ -22,11 +21,10 @@
     <% if user_signed_in? %>
     <td><%= link_to 'Show', fixture_result_path(@fixture, result) %></td>
     <td><%= link_to 'Edit', edit_fixture_result_path(@fixture, result) %></td>
-    <td><%= link_to 'Destroy', fixture_result_path(@fixture, result), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
 <% end %>
 </table>
-<% if user_signed_in? %>
+<% if user_signed_in? && @fixture.new_result_creatable? %>
   <%= link_to 'New Result', new_fixture_result_path(@fixture) %>
 <% end %>

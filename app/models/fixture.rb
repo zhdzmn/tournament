@@ -35,6 +35,14 @@ class Fixture < ActiveRecord::Base
       self.competent1
     end
   end
+
+  def new_result_creatable?
+    if stage == 'Group'
+      self.results.count < 3
+    else
+      self.results.count < 5
+    end
+  end
   
   private
   def competents_and_stage_should_be_unique
