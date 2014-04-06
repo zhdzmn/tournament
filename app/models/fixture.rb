@@ -63,12 +63,12 @@ class Fixture < ActiveRecord::Base
   end
   def populate_match_began
     if self.new_record?
-      self.match_begin = false
+      self.match_begin = 0
     else 
       if self.results.size == 0
-        self.match_begin = false
+        self.match_begin = 0
       end
-      self.match_begin = true
+      self.match_begin = 1
     end
   end
 
