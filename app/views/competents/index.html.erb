@@ -15,8 +15,8 @@
 <% @competents.each do |competent| %>
   <tr>
     <td><%= competent.name %></td>
-    <td><%= competent.group %></td>
-    <td><%= competent.group.mode %></td>
+    <td><%= competent.groups.collect { |g| g.to_s }.join(' ') %></td>
+    <td><%= competent.groups.first.try(:mode) %></td>
     <% if user_signed_in? %>
     <td><%= link_to 'Show', competent %></td>
     <td><%= link_to 'Edit', edit_competent_path(competent) %></td>
@@ -28,4 +28,6 @@
 
 <br />
 
-<%= link_to 'New Competent', new_competent_path %>
+<% if user_signed_in? %>
+    <%= link_to 'New Competent', new_competent_path %>
+<% end %>

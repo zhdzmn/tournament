@@ -27,9 +27,11 @@ class FixturesController < ApplicationController
   # GET /fixtures/new
   # GET /fixtures/new.json
   def new
+    @group = Group.find(params[:group_id]) if params[:group_id].present?
     @fixture = Fixture.new
 
     @groups = Group.order('mode DESC, name ASC')
+    @groups = @groups.where(id: params[:group_id]) if params[:group_id].present?
 
     respond_to do |format|
       format.html # new.html.erb

@@ -51,6 +51,9 @@
 
 <br />
 <% if user_signed_in? %>
-    <%= link_to 'New Fixture', new_fixture_path %>
+    <%= form_tag new_fixture_url, method: 'get' do %>
+        <%= select_tag :group_id, options_from_collection_for_select(Group.order(:mode, :name), 'id', 'to_opt_group'), include_blank: true, prompt: 'Select a group' %>
+        <%= button_tag 'New Fixture', class: 'btn btn-primary', name: nil %>
+    <% end %>
 <% end %>
 

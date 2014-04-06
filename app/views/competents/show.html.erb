@@ -7,7 +7,7 @@
 
 <p>
   <b>Group:</b>
-  <%= @competent.group %>
+  <%= @competent.groups.collect { |g| g.to_opt_group }.join(', ') %>
 </p>
 
 

@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <% if @group.present? %>
+    <%= f.hidden_field :group_id %>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :stage, class: 'col-sm-2 control-label' %>
@@ -17,6 +20,14 @@
       <%= f.select :stage, %W(Group KnockOut) %>
     </div>
   </div>
+  <% unless @group.present? %>
+  <div class="form-group">
+    <%= f.label :group, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.select :group_id, Group.order(:mode, :name).collect {|g| [g.to_opt_group, g.id] }, include_blank: true, prompt: 'Select a group' %>
+    </div>
+  </div>
+  <% end %>
   <div class="form-group">
     <%= f.label :competent1, class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">

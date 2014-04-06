@@ -1,13 +1,16 @@
 class Fixture < ActiveRecord::Base
   belongs_to :referee
+  belongs_to :group
   belongs_to :competent1, class_name: 'Competent'
   belongs_to :competent2, class_name: 'Competent'
   has_many :results, dependent: :destroy
-  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage, :mode
+  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage, :mode, :group_id
 
   validate :competents_and_stage_should_be_unique
   validate :competents_should_be_on_same_group_if_group_stage
   validate :competents_should_be_on_same_mode
+  validate :competents_should_be_different
+  validate :group_has_to_be_set_if_group_stage
   
   validates :competent1_id, :competent2_id, presence: true
 
@@ -56,18 +59,18 @@ class Fixture < ActiveRecord::Base
   end
   def competents_should_be_on_same_group_if_group_stage
     if stage == 'Group'
-      if competent1.group_id != competent2.group_id
-        errors.add(:stage, "#{stage}, competents should be in the same group")
+      unless self.competent1.groups.exists?(self.group_id) && self.competent2.groups.exists?(self.group_id)
+        errors.add(:group_id, " competents should be in #{group}")
       end
     end
   end
   def competents_should_be_on_same_mode
-    if competent1.group.mode != competent2.group.mode
+    if competent1.groups.first.try(:mode) != competent2.groups.first.try(:mode)
       errors.add(:competent1, "competents should be in the same mode")
     end
   end
   def populate_mode
-    self.mode = competent1.group.mode
+    self.mode = competent1.groups.first.try(:mode)
   end
   def populate_match_began
     if self.new_record?
@@ -77,6 +80,18 @@ class Fixture < ActiveRecord::Base
         self.match_begin = 0
       end
       self.match_begin = 1
+    end
+  end
+  def competents_should_be_different
+    if competent1.id == competent2.id
+      errors.add(:competent1, " and competent2 should be different")
+    end
+  end
+  def group_has_to_be_set_if_group_stage
+    if self.stage == 'Group'
+      if self.group.blank?
+        errors.add(:group, " needs to be set on group stage")
+      end
     end
   end
 

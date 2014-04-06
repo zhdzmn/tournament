@@ -17,7 +17,10 @@ class GroupsController < ApplicationController
     @groups.each do |mode, groups|
       Group.where(mode: mode).each do |g|
         groups[g.name] = g.competents.collect do |c|
-          {id: c.id, name: c.name, match_played: g.fixtures.select {|f| (f.competent1_id == c.id || f.competent2_id == c.id) && f.match_begin }.try(:size), point: Result.joins(winner: :group).where(winner_id: c.id).count, ball_advantage: Result.joins(winner: :group).where(winner_id: c.id).sum(:ball_in_table)}
+          {id: c.id, name: c.name, 
+            match_played: g.fixtures.select {|f| (f.competent1_id == c.id || f.competent2_id == c.id) && f.match_begin }.size,
+            point: g.results.where(winner_id: c.id).count, 
+            ball_advantage: g.results.where(winner_id: c.id).sum(:ball_in_table)}
         end
         groups[g.name].sort! do |a, b|
           case

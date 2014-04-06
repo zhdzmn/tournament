@@ -1,9 +1,9 @@
 class CompetentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index]
   # GET /competents
   # GET /competents.json
   def index
-    @competents = Competent.includes(:group).order('groups.mode, groups.name, competents.name')
+    @competents = Competent.includes(:groups).order('groups.mode, groups.name, competents.name')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,7 +23,7 @@ class CompetentsController < ApplicationController
   end
 
   # GET /competents/new
-  # GET /competents/new.json
+  # GET /competents/new.json 
   def new
     @competent = Competent.new
 

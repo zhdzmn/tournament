@@ -1,9 +1,9 @@
 class Competent < ActiveRecord::Base
-  belongs_to :group
+  has_and_belongs_to_many :groups
   has_many :home_fixtures, foreign_key: :competent1_id, class_name: 'Fixture'
   has_many :away_fixtures, foreign_key: :competent2_id, class_name: 'Fixture'
   has_many :results, foreign_key: :winner_id
-  attr_accessible :group_id, :name
+  attr_accessible :group_ids, :name
 
   def to_s
     self.name

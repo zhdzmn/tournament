@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
-  has_many :competents, order: "name"
+  has_and_belongs_to_many :competents, order: "name"
+  has_many :fixtures
+  has_many :results, through: :fixtures
   attr_accessible :mode, :name
 
   def to_s
@@ -9,14 +11,4 @@ class Group < ActiveRecord::Base
   def to_opt_group
     self.mode + ' ' + self.name
   end
-
-  def fixtures
-    fxs = []
-    self.competents.each do |c|
-      fxs += c.home_fixtures
-      fxs += c.away_fixtures
-    end
-    fxs.uniq {|f| f.id}
-  end
-
 end
