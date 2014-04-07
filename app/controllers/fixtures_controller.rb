@@ -27,7 +27,6 @@ class FixturesController < ApplicationController
   # GET /fixtures/new
   # GET /fixtures/new.json
   def new
-    @group = Group.find(params[:group_id]) if params[:group_id].present?
     @fixture = Fixture.new
 
     @groups = Group.order('mode DESC, name ASC')

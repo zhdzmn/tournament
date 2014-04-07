@@ -1,10 +1,9 @@
 class Fixture < ActiveRecord::Base
   belongs_to :referee
-  belongs_to :group
   belongs_to :competent1, class_name: 'Competent'
   belongs_to :competent2, class_name: 'Competent'
   has_many :results, dependent: :destroy
-  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage, :mode, :group_id
+  attr_accessible :match_date, :match_time, :match_begin, :competent1_id, :competent2_id, :referee_id, :stage, :mode
 
   validate :competents_and_stage_should_be_unique
   validate :competents_should_be_on_same_group_if_group_stage

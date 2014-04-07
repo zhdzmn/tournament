@@ -1,7 +1,5 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :competents, order: "name"
-  has_many :fixtures
-  has_many :results, through: :fixtures
   attr_accessible :mode, :name, :second_round
 
   validates_uniqueness_of :name, scope: :mode
@@ -13,6 +11,27 @@ class Group < ActiveRecord::Base
 
   def to_opt_group
     self.mode + ' ' + self.name
+  end
+
+  def fixtures
+    fxs = []
+    competents.each do |c1|
+      competents.each do |c2|
+        unless c1.id == c2.id
+          fxs = fxs + c1.home_fixtures.where(competent2_id: c2.id, stage: 'Group')
+          fxs = fxs + c2.home_fixtures.where(competent1_id: c1.id, stage: 'Group')
+        end
+      end
+    end
+    fxs
+  end
+
+  def results
+    rs = []
+    self.fixtures.each do |f|
+      rs = rs + f.results
+    end
+    rs
   end
 
   private
