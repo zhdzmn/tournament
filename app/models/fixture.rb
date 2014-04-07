@@ -9,7 +9,6 @@ class Fixture < ActiveRecord::Base
   validate :competents_should_be_on_same_group_if_group_stage
   validate :competents_should_be_on_same_mode
   validate :competents_should_be_different
-  validate :group_has_to_be_set_if_group_stage
   
   validates :competent1_id, :competent2_id, presence: true
 
@@ -58,8 +57,8 @@ class Fixture < ActiveRecord::Base
   end
   def competents_should_be_on_same_group_if_group_stage
     if stage == 'Group'
-      unless self.competent1.groups.exists?(self.group_id) && self.competent2.groups.exists?(self.group_id)
-        errors.add(:group_id, " competents should be in #{group}")
+      unless self.competent1.groups.exists?(['competents_groups.group_id IN (?)', self.competent2.group_ids])
+        errors.add(:competent1_id, " competents should be in same group")
       end
     end
   end
@@ -84,13 +83,6 @@ class Fixture < ActiveRecord::Base
   def competents_should_be_different
     if competent1.id == competent2.id
       errors.add(:competent1, " and competent2 should be different")
-    end
-  end
-  def group_has_to_be_set_if_group_stage
-    if self.stage == 'Group'
-      if self.group.blank?
-        errors.add(:group, " needs to be set on group stage")
-      end
     end
   end
 
