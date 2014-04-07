@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140406051653) do
+ActiveRecord::Schema.define(:version => 20140407053318) do
 
   create_table "competents", :force => true do |t|
     t.string   "name"
@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(:version => 20140406051653) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "mode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "second_round", :default => false
   end
 
   create_table "referees", :force => true do |t|
