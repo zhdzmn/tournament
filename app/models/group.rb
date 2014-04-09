@@ -40,8 +40,11 @@ class Group < ActiveRecord::Base
     unless self.new_record?
       g = g.where(['id != ?', self.id])
     end
-    if g.size > 0
+    if mode == 'Doubles' && g.size > 0
       errors.add(:second_round, " can have only one group")
+    end
+    if mode == 'Singles' && g.size > 1
+      errors.add(:second_round, " can have only two group")
     end
   end
 end
