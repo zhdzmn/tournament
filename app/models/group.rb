@@ -36,7 +36,7 @@ class Group < ActiveRecord::Base
 
   private
   def only_one_second_round_group
-    g = Group.where({mode: self.mode, second_round: self.second_round})
+    g = Group.where({mode: self.mode, second_round: true})
     unless self.new_record?
       g = g.where(['id != ?', self.id])
     end
